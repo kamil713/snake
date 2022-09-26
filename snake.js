@@ -4,6 +4,11 @@ const snakeElement = document.querySelector('.snake');
 let horizontally = snakeElement.offsetLeft;
 let vertically = snakeElement.offsetTop;
 const refreshTime = 250;
+let numbers = [];
+
+for (let i = 0; i <= 480; i += 20) {
+	numbers.push(i);
+}
 
 class Snake {
 	position = {
@@ -29,8 +34,8 @@ class Snake {
 
 class Candy {
 	position = {
-		x: this.getRandomInt(480),
-		y: this.getRandomInt(480),
+		x: numbers[Math.floor(Math.random() * (numbers.length - 1))],
+		y: numbers[Math.floor(Math.random() * (numbers.length - 1))],
 	};
 
 	render() {
@@ -52,17 +57,18 @@ class Candy {
 	}
 }
 
+// init
 const snake = new Snake();
-
-function init() {
-	const candy = new Candy();
-	// board.insertAdjacentElement('beforeend', candy.render())
-	board.appendChild(candy.render())
-}
+const candy = new Candy();
 
 function animate() {
 	snake.moveHorizontally();
 	snake.moveVertically();
+
+	if (board.lastChild.className !== 'candy') {
+		// board.insertAdjacentElement('beforeend', candy.render())
+		board.appendChild(candy.render());
+	}
 
 	// collision detection
 	if (snake.position.x + 3 < 0 || snake.position.x + 3 > 500) {
@@ -74,7 +80,6 @@ function animate() {
 	}
 }
 
-init();
 setInterval(animate, refreshTime);
 
 addEventListener('keydown', ({ keyCode }) => {
