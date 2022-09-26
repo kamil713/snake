@@ -27,7 +27,38 @@ class Snake {
 	}
 }
 
+class Candy {
+	position = {
+		x: this.getRandomInt(480),
+		y: this.getRandomInt(480),
+	};
+
+	render() {
+		const candyEl = document.createElement('div');
+		candyEl.className = 'candy';
+		candyEl.style.left = this.position.x + 'px';
+		candyEl.style.top = this.position.y + 'px';
+		candyEl.style['background-color'] = `rgb(
+			${this.getRandomInt(255)},
+			${this.getRandomInt(255)},
+			${this.getRandomInt(255)}
+		)`;
+
+		return candyEl;
+	}
+
+	getRandomInt(max) {
+		return Math.floor(Math.random() * max);
+	}
+}
+
 const snake = new Snake();
+
+function init() {
+	const candy = new Candy();
+	// board.insertAdjacentElement('beforeend', candy.render())
+	board.appendChild(candy.render())
+}
 
 function animate() {
 	snake.moveHorizontally();
@@ -43,6 +74,7 @@ function animate() {
 	}
 }
 
+init();
 setInterval(animate, refreshTime);
 
 addEventListener('keydown', ({ keyCode }) => {
