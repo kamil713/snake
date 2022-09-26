@@ -3,7 +3,7 @@ const snakeElement = document.querySelector('.snake');
 
 let horizontally = snakeElement.offsetLeft;
 let vertically = snakeElement.offsetTop;
-const refreshTime = 250;
+const refreshTime = 100;
 let numbers = [];
 
 for (let i = 0; i <= 480; i += 20) {
@@ -85,27 +85,37 @@ setInterval(animate, refreshTime);
 addEventListener('keydown', ({ keyCode }) => {
 	switch (keyCode) {
 		case 37:
-			snake.velocity.x = 20;
-			snake.velocity.y = 0;
-			if (snake.velocity.x > 0) snake.velocity.x = -snake.velocity.x;
+			if (snake.velocity.x > 0) break;
+			if (snake.velocity.x === 0) {
+				snake.velocity.y = 0;
+				snake.velocity.x = 20;
+				snake.velocity.x = -snake.velocity.x;
+			}
 			console.log('Left');
 			break;
 		case 38:
-			snake.velocity.x = 0;
-			snake.velocity.y = 20;
-			if (snake.velocity.y > 0) snake.velocity.y = -snake.velocity.y;
+			if (snake.velocity.y > 0) break;
+			if (snake.velocity.y === 0) {
+				snake.velocity.x = 0;
+				snake.velocity.y = 20;
+				snake.velocity.y = -snake.velocity.y;
+			}
 			console.log('Up');
 			break;
 		case 39:
-			snake.velocity.x = 20;
-			snake.velocity.y = 0;
-			if (snake.velocity.x < 0) snake.velocity.x = -snake.velocity.x;
+			if (snake.velocity.x > 0) break;
+			if (snake.velocity.x === 0) {
+				snake.velocity.y = 0;
+				snake.velocity.x = 20;
+			}
 			console.log('Right');
 			break;
 		case 40:
-			snake.velocity.x = 0;
-			snake.velocity.y = 20;
-			if (snake.velocity.y < 0) snake.velocity.y = -snake.velocity.y;
+			if (snake.velocity.y < 0) break;
+			if (snake.velocity.y === 0) {
+				snake.velocity.x = 0;
+				snake.velocity.y = 20;
+			}
 			console.log('Down');
 			break;
 	}
