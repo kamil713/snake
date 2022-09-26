@@ -90,6 +90,7 @@ addEventListener('keydown', ({ keyCode }) => {
 				snake.velocity.y = 0;
 				snake.velocity.x = 20;
 				snake.velocity.x = -snake.velocity.x;
+				snakeElement.style.transform = 'rotate(180deg)';
 			}
 			console.log('Left');
 			break;
@@ -99,6 +100,7 @@ addEventListener('keydown', ({ keyCode }) => {
 				snake.velocity.x = 0;
 				snake.velocity.y = 20;
 				snake.velocity.y = -snake.velocity.y;
+				snakeElement.style.transform = 'rotate(-90deg)';
 			}
 			console.log('Up');
 			break;
@@ -107,6 +109,7 @@ addEventListener('keydown', ({ keyCode }) => {
 			if (snake.velocity.x === 0) {
 				snake.velocity.y = 0;
 				snake.velocity.x = 20;
+				snakeElement.style.transform = 'rotate(0deg)';
 			}
 			console.log('Right');
 			break;
@@ -115,6 +118,7 @@ addEventListener('keydown', ({ keyCode }) => {
 			if (snake.velocity.y === 0) {
 				snake.velocity.x = 0;
 				snake.velocity.y = 20;
+				snakeElement.style.transform = 'rotate(90deg)';
 			}
 			console.log('Down');
 			break;
