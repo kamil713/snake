@@ -70,6 +70,17 @@ function animate() {
 		board.appendChild(candy.render());
 	}
 
+	if (board.lastChild.className === 'candy') {
+		const candy = document.querySelector('.candy');
+
+		if (snake.position.x === candy.style.left) {
+			console.log('paf');
+		}
+
+	}
+
+
+
 	// collision detection
 	if (snake.position.x + 3 < 0 || snake.position.x + 3 > 500) {
 		console.log('You lose');
