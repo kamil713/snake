@@ -33,16 +33,13 @@ class Snake {
 }
 
 class Candy {
-	position = {
-		x: numbers[Math.floor(Math.random() * (numbers.length - 1))],
-		y: numbers[Math.floor(Math.random() * (numbers.length - 1))],
-	};
-
 	render() {
 		const candyEl = document.createElement('div');
 		candyEl.className = 'candy';
-		candyEl.style.left = this.position.x + 'px';
-		candyEl.style.top = this.position.y + 'px';
+		candyEl.style.left =
+			numbers[Math.floor(Math.random() * (numbers.length - 1))] + 'px';
+		candyEl.style.top =
+			numbers[Math.floor(Math.random() * (numbers.length - 1))] + 'px';
 		candyEl.style['background-color'] = `rgb(
 			${this.getRandomInt(255)},
 			${this.getRandomInt(255)},
@@ -73,13 +70,13 @@ function animate() {
 	if (board.lastChild.className === 'candy') {
 		const candy = document.querySelector('.candy');
 
-		if (snake.position.x === candy.style.left) {
-			console.log('paf');
+		if (
+			snake.position.x + 'px' === candy.style.left &&
+			snake.position.y + 'px' === candy.style.top
+		) {
+			board.removeChild(candy);
 		}
-
 	}
-
-
 
 	// collision detection
 	if (snake.position.x + 3 < 0 || snake.position.x + 3 > 500) {
